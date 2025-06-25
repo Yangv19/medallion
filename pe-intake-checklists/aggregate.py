@@ -38,6 +38,7 @@ def task_get_provider_onboarding_aggregate_data():
         .filter(
             deleted__isnull=True,
             provider__user__org_memberships__is_active=True,
+            provider__user__org_memberships__organization__is_demo_account=False,
             unique_key__startswith="pe-intake-",
         )
         .exclude(provider__auto_import_source="caqh")
