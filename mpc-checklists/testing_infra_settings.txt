@@ -1,0 +1,21 @@
+DB instance:
+- prod: db.m7i.16xlarge
+- dev-x: db.m6g.large
+
+Redis instance:
+- prod: cache.m7g.large
+- dev-x: cache.t4g.micro
+
+ECS celery tasks:
+- prod:
+    - ecs_service_desired_count: 22
+    - ecs_worker_container_cpu: 2048
+    - ecs_worker_container_memory_reservation: 9216
+    - concurrency: 4
+    - is_dd_apm_enabled: true
+- dev-x:
+    - ecs_service_desired_count: 1
+    - ecs_worker_container_cpu: 512
+    - ecs_worker_container_memory_reservation: 2048
+    - concurrency: 1
+    - is_dd_apm_enabled: false
